@@ -26,6 +26,14 @@ y_test = pd.read_csv(ytest_path)
 # print(accuracy_score(y_test, clf.predict(X_test)))
 
 
+# to apply one hot encoding, the data should be numeric, so first we need to use label encoder to convert to 
+# numbers and then apply one hot encoding
+
+##http://stackoverflow.com/questions/27617078/pandas-onehotencoder-fitdataframe-returns-valueerror-invalid-literal-for-long
+
+## 
+## Explore --> A simpler approach is to use DictVectorizer, which does the conversion to integer as well as the OneHotEncoding at the same step.
+
 le = LabelEncoder()
 # print(X_test.columns.values)
 # print('before')
