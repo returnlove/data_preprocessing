@@ -17,6 +17,7 @@ y_test = pd.read_csv(ytest_path)
 
 
 # print(X_train.head())
+# print(X_train.shape)
 # print(y_train.head())
 
 # clf = LogisticRegression(penalty='l2',C=.01)
@@ -26,17 +27,37 @@ y_test = pd.read_csv(ytest_path)
 
 le = LabelEncoder()
 # print(X_test.columns.values)
+print('before')
+print(X_train.shape)
+print(X_test.shape)
+print(X_train.head())
 
 for col in X_test.columns.values:
 	if(X_train[col].dtypes == 'object'):
-		print(col)
+		# print(col)
 		# print(X_test[col].dtypes)
-		data = X_train[col].append(X_train[col])
+
+		# to get all the levels
+		# print(len(X_train[col]))
+		# print(len(X_test[col]))
+		data = X_train[col].append(X_test[col])
+		# print(len(data))
 		# print(data.values)
 		le.fit(data.values)
-		# X_train[col] = le.transform(X_train[col])
-		# X_test[col] = le.transform(X_test[col])
+		X_train[col] = le.transform(X_train[col])
+		X_test[col] = le.transform(X_test[col])
 		# print(X_train[col])
+
+print('after')
+
+print(X_train.shape)
+print(X_test.shape)
+print(X_train.head())
+
+clf = LogisticRegression()
+clf.fit(X_train, y_train)
+print(accuracy_score(y_test, clf.predict(X_test)))
+
 
 
 
