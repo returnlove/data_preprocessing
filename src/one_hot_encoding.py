@@ -101,6 +101,8 @@ for col in categorical_columns:
 	enc.fit(data)
 	# print('error')
 	temp = enc.transform(X_train[[col]])
+	print('temp is ####')
+	print(temp)
 	# print('transform ok')
 	# print(data[col].value_counts())
 	# print(data[col].value_counts().index)
